@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Puzzle Game</title>
+<style>
+table {
+    width: 100%;
+    height: 100%;
+    border-collapse: collapse;
+}
+
+td {
+    border: 1px solid black;
+    width: 100px;
+    height: 100px;
+    text-align: center;
+    vertical-align: middle;
+}
+</style>
+</head>
+<body>
+<h1>Puzzle Game</h1>
+<p>Please select the numbered tiles. Tiles will swap positions.</p>
+<p>Press 'Reset' button to restart the game.</p>
+<p>Note: The last tile should always be a zero (0).</p>
+<table id="puzzle">
+    <tr>
+        <td onclick="move(0, 0)">1</td>
+        <td onclick="move(0, 1)">2</td>
+        <td onclick="move(0, 2)">3</td>
+    </tr>
+    <tr>
+        <td onclick="move(1, 0)">4</td>
+        <td onclick="move(1, 1)">5</td>
+        <td onclick="move(1, 2)">6</td>
+    </tr>
+    <tr>
+        <td onclick="move(2, 0)">7</td>
+        <td onclick="move(2, 1)">8</td>
+        <td onclick="move(2, 2)">0</td>
+    </tr>
+</table>
+<br>
+<button onclick="reset()">Reset</button>
+
+<script>
+var moves = 0;
+var gameStarted = false;
+var tiles = [
+    [1, 2, 3],
+    [4, 5, 6],
+    [7, 8, 0]
+];
+
+function printTiles() {
+    var puzzle = document.getElementById("puzzle");
+    for (var i = 0; i < 3; i++) {
+        for (var j = 0; j < 3; j++) {
+            puzzle.rows[i].cells[j].innerHTML = tiles[i][j];
+        }
+    }
+}
+
+function move(x, y) {
+    if (!gameStarted) {
+        gameStarted = true;
+    }
+
+    if (tiles[x][y] == 0) {
+        return;
+    }
+
+    var emptyX = x + Math.floor(Math.random() * 3) - 1;
+    var emptyY = y + Math.floor(Math.random() * 3) - 1;
+
+    while (emptyX < 0 || emptyX > 2 || emptyY < 0 || emptyY > 2) {
+        emptyX = x + Math.floor(Math.random() * 3) - 1;
+        emptyY = y + Math.floor(Math.random() * 3) - 1;
+    }
+
+    tiles[emptyX][emptyY] = tiles[x][y];
+    tiles[x][y] = 0;
+
+    moves++;
+    document.getElementById("moves").innerHTML = "Moves: " + moves;
+
+    printTiles();
+
+    if (isGameWon()) {
+        alert("Congratulations! You have won the game with " + moves + " moves!");
+        reset();
+    }
+}
+
+function reset() {
+    moves = 0;
+    gameStarted = false;
+    tiles = [
+        [1, 2, 3],
+        [4, 5, 6],
+        [7, 8, 0]
+    ];
+    printTiles();
+}
+
+function isGameWon() {
+    for (var i = 0; i < 3; i++) {
+        for (var j = 0; j < 3; j++) {
+            if (tiles[i][j] != (i * 3 + j + 1) % 9) {
+                return false;
+            }
+        }
+    }
+    return true;
+}
+
+printTiles();
+</script>
+</body>
+</html>

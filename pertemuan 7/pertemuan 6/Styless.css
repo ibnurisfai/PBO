@@ -1,0 +1,49 @@
+.flag {
+ width: 300px;
+ height: 200px;
+ display: flex;
+ align-items: center;
+ justify-content: center;
+}
+
+.circle {
+ width: 100px;
+ height: 100px;
+ background-color: white;
+ border-radius: 50%;
+}
+
+.stripes {
+ width: 200px;
+ height: 100px;
+ display: flex;
+}
+
+.red {
+ width: 66.66666666666666px;
+ height: 100px;
+ background-color: red;
+}
+
+.white {
+ width: 66.66666666666666px;
+ height: 100px;
+ background-color: white;
+ position: relative;
+}
+
+.diamond {
+ width: 66.66666666666666px;
+ height: 66.66666666666666px;
+ background-color: black;
+ position: absolute;
+ top: 0;
+ left: 0;
+ transform: rotate(45deg);
+}
+
+.black {
+ width: 66.66666666666666px;
+ height: 100px;
+ background-color: black;
+}
