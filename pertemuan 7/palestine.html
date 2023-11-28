@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Japanese Flag</title>
+    <style>
+      /* Define the colors */
+.white {
+    background-color: #ffffff;
+}
+
+.red {
+    background-color: #ff0000;
+}
+
+.black {
+    background-color: #000000;
+}
+
+/* Define the sizes */
+.circle {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+}
+
+.stripes {
+    display: flex;
+    flex-direction: column;
+    width: 200px;
+    height: 200px;
+}
+
+.red, .white, .black {
+    flex: 1;
+}
+
+/* Additional styling for the Japanese flag */
+.circle {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.diamond {
+    width: 0;
+    height: 0;
+    border: 25px solid transparent;
+    border-bottom-color: #ffffff;
+    position: absolute;
+    top: 25px;
+    left: 25px;
+}
+    </style>
+</head>
+<body>
+    <div class="flag">
+        <div class="circle"></div>
+        <div class="stripes">
+            <div class="red"></div>
+            <div class="white">
+                <div class="diamond"></div>
+            </div>
+            <div class="black"></div>
+        </div>
+    </div>
+</body>
+</html>
