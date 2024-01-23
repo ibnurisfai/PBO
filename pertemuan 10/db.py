@@ -5,7 +5,7 @@ class DBConnection:
     def __init__(self):
         self.host = "localhost"
         self.port = 3306
-        self.name = "pbo"
+        self.name = "dbkampus"
         self.user = "root"
         self.password = ""
         self.conn = None
@@ -51,10 +51,12 @@ class DBConnection:
         self.result = self.cursor.fetchall()
         return self.result
 
-    def insert(self, sql, values):
-        self.cursor.execute(sql, values)
+    def insert(self, sql):
+        self.connect()  
+        self.cursor.execute(sql)
         self.conn.commit()
-        return self.cursor.rowcount
+        self.affected = self.cursor.rowcount        
+        return self.affected
 
     def update(self, sql, val):
         self.connect()  
@@ -82,7 +84,3 @@ class DBConnection:
             return "Server is running on " + self.host + ' using port ' + str(self.port)
         else:
             return "Server is offline."
-
-A = DBConnection()
-B = A.info
-print(B)
